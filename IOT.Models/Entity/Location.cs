@@ -1,4 +1,6 @@
 ﻿
+using MongoDB.Bson.Serialization.Attributes;
+
 namespace IOT.Models.Entity
 {
     /// <summary>
@@ -7,7 +9,10 @@ namespace IOT.Models.Entity
     /// <author>@HungDinh</author>
     public class Location
     {
+        [BsonElement("lng")]
         public double lng { get; set; }
+
+        [BsonElement("lat")]
         public double lat { get; set; }
     }
 }

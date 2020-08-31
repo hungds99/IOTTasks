@@ -13,10 +13,20 @@ namespace IOT.Models.Entity
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string _id { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+
+        [BsonElement("createdAt")]
+        public DateTime createdAt { get; set; }
+
+        [BsonElement("updatedAt")]
+        public DateTime updatedAt { get; set; }
+
+        [BsonElement("createdBy")]
         public string createdBy { get; set; }
+
+        [BsonElement("updatedBy")]
         public string updatedBy { get; set; }
+
+        [BsonElement("isDeleted")]
         public bool isDeleted { get; set; }
     }
 }

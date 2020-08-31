@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
 
 namespace IOT.Models.Entity
 {
@@ -8,7 +9,10 @@ namespace IOT.Models.Entity
     /// <author>@HungDinh</author>
     public class Geometry
     {
+        [BsonElement("type")]
         public string type { get; set; }
+
+        [BsonElement("coordinates")]
         public IList<Object> coordinates { get; set; }
     }
 }
