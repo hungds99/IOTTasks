@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IOT.Models\IOT.Models.csproj" />
+    <ProjectReference Include="..\IOT.Repositories\IOT.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>
