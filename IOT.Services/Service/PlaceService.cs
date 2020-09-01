@@ -1,6 +1,7 @@
 ﻿using IOT.Models.Entity;
 using IOT.Repositories.Interface;
 using IOT.Services.Interface;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -21,7 +22,16 @@ namespace IOT.Services.Service
 
         public async Task<Place> AddPlaceAsync(Place place)
         {
-            return await _placeRepository.Add(place);
+            Place placeAdded;
+            try
+            {
+                placeAdded = await _placeRepository.Add(place);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return placeAdded;
         }
 
         public async Task<IEnumerable<Place>> GetAll()
@@ -31,17 +41,52 @@ namespace IOT.Services.Service
 
         public async Task<Place> GetByIdAsync(string id)
         {
-            return await _placeRepository.GetById(id);
+            Place place;
+            try
+            {
+                place = await _placeRepository.GetById(id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return place;
         }
 
         public async Task<bool> RemovePlaceAsync(string id)
         {
-            return await _placeRepository.Remove(id);
+            bool isPlaceRemoved;
+            try
+            {
+                isPlaceRemoved = await _placeRepository.Remove(id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return isPlaceRemoved;
         }
 
         public async Task<Place> UpdatePlaceAsync(string id, Place place)
         {
-            return await _placeRepository.Update(id, place);
+            var placeExisted = await GetByIdAsync(id);
+            Place plc;
+            if (placeExisted != null)
+            {
+                try
+                {
+                    plc = await _placeRepository.Update(id, place);
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+            else
+            {
+                return placeExisted;
+            }
+            return plc;
         }
     }
 }

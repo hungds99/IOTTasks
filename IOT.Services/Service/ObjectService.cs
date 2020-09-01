@@ -21,7 +21,16 @@ namespace IOT.Services.Service
 
         public async Task<Object> AddObjectAsync(Object obj)
         {
-            return await _objectRepository.Add(obj);
+            Object objectAdded;
+            try
+            {
+                objectAdded = await _objectRepository.Add(obj);
+            } catch (System.Exception e)
+            {
+                throw e;
+            }
+
+            return objectAdded;
         }
 
         public async Task<IEnumerable<Object>> GetAll()
@@ -31,17 +40,48 @@ namespace IOT.Services.Service
 
         public async Task<Object> GetByIdAsync(string id)
         {
-            return await _objectRepository.GetById(id);
+            Object obj;
+            try
+            {
+                obj = await _objectRepository.GetById(id);
+            } catch(System.Exception e)
+            {
+                throw e;
+            }
+            return obj;
         }
 
         public async Task<bool> RemoveObjectAsync(string id)
         {
-            return await _objectRepository.Remove(id);
+            bool isObjectRemoved;
+            try
+            {
+                isObjectRemoved = await _objectRepository.Remove(id);
+            } catch (System.Exception e)
+            {
+                throw e;
+            }
+            return isObjectRemoved;
         }
 
         public async Task<Object> UpdateObjectAsync(string id, Object obj)
         {
-            return await _objectRepository.Update(id, obj);
+            var objectExisted = await GetByIdAsync(id);
+            Object objt;
+            if(objectExisted != null)
+            {
+                try
+                {
+                    objt = await _objectRepository.Update(id, obj);
+                } catch (System.Exception e)
+                {
+                    throw e;
+                }
+            } else
+            {
+                return objectExisted;
+            }
+            return objt;
         }
     }
 }

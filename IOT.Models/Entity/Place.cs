@@ -34,6 +34,6 @@ namespace IOT.Models.Entity
         public string phone { get; set; }
 
         [BsonElement("source")]
-        public Dictionary<string,Object> source { get; set; }
+        public Dictionary<string,object> source { get; set; }
     }
 }

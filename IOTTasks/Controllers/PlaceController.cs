@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using IOT.Models.Entity;
 using IOT.Services.Interface;
+using IOT.Utilities.Response;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IOTTasks.Controllers
@@ -22,33 +23,54 @@ namespace IOTTasks.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Place>> Get()
+        public async Task<APIResponse<IEnumerable<Place>>> Get()
         {
-            return await _placeService.GetAll();
+            var places = await _placeService.GetAll();
+            return new APIResponse<IEnumerable<Place>>(Ok().StatusCode, "", places);
         }
 
         [HttpGet("{id}")]
-        public async Task<Place> Get(string id)
+        public async Task<APIResponse<Place>> Get(string id)
         {
-            return await _placeService.GetByIdAsync(id);
+            var place = await _placeService.GetByIdAsync(id);
+            if (place != null)
+            {
+                return new APIResponse<Place>(Ok().StatusCode, "", place);
+            }
+            return new APIResponse<Place>(NotFound().StatusCode, "Place not found", place);
         }
 
         [HttpPost]
-        public async Task<Place> Post([FromBody] Place place)
+        public async Task<APIResponse<Place>> Post([FromBody] Place place)
         {
-            return await _placeService.AddPlaceAsync(place);
+            var placeAdded = await _placeService.AddPlaceAsync(place);
+            if (placeAdded != null)
+            {
+                return new APIResponse<Place>(201, "Place is created", placeAdded);
+            }
+            return new APIResponse<Place>(204, "Place is not created", placeAdded);
         }
 
         [HttpPut("{id}")]
-        public async Task<Place> Put(string id, [FromBody] Place place)
+        public async Task<APIResponse<Place>> Put(string id, [FromBody] Place place)
         {
-            return await _placeService.UpdatePlaceAsync(id, place);
+            var placeUpdated = await _placeService.UpdatePlaceAsync(id, place);
+            if (placeUpdated != null)
+            {
+                return new APIResponse<Place>(200, "Place is updated", placeUpdated);
+            }
+            return new APIResponse<Place>(204, "Place is not updated", placeUpdated);
         }
 
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(string id)
+        public async Task<APIResponse<Place>> Delete(string id)
         {
-            return await _placeService.RemovePlaceAsync(id);
+            var isDeleted = await _placeService.RemovePlaceAsync(id);
+            if (isDeleted)
+            {
+                return new APIResponse<Place>(200, "Place is removed", new Place());
+            }
+            return new APIResponse<Place>(400, "Id not found", new Place());
         }
     }
 }

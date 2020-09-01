@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using IOT.Models.Entity;
 using IOT.Services.Interface;
+using IOT.Utilities.Response;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IOTTasks.Controllers
@@ -22,33 +23,54 @@ namespace IOTTasks.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Model>> Get()
+        public async Task<APIResponse<IEnumerable<Model>>> Get()
         {
-            return await _modelService.GetAll();
+            var models = await _modelService.GetAll();
+            return new APIResponse<IEnumerable<Model>>(Ok().StatusCode, "", models);
         }
 
         [HttpGet("{id}")]
-        public async Task<Model> Get(string id)
+        public async Task<APIResponse<Model>> Get(string id)
         {
-            return await _modelService.GetByIdAsync(id);
+            var model = await _modelService.GetByIdAsync(id);
+            if(model != null)
+            {
+                return new APIResponse<Model>(Ok().StatusCode, "", model);
+            }
+            return new APIResponse<Model>(NotFound().StatusCode, "Model not found", model);
         }
 
         [HttpPost]
-        public async Task<Model> Post([FromBody] Model model)
+        public async Task<APIResponse<Model>> Post([FromBody] Model model)
         {
-            return await _modelService.AddModelAsync(model);
+            var modelAdded = await _modelService.AddModelAsync(model);
+            if(modelAdded != null)
+            {
+                return new APIResponse<Model>(201, "Model is created", modelAdded);
+            }
+            return new APIResponse<Model>(204, "Model is not created", modelAdded);
         }
 
         [HttpPut("{id}")]
-        public async Task<Model> Put(string id, [FromBody] Model model)
+        public async Task<APIResponse<Model>> Put(string id, [FromBody] Model model)
         {
-            return await _modelService.UpdateModelAsync(id, model);
+            var modelUpdated = await _modelService.UpdateModelAsync(id, model);
+            if(modelUpdated != null)
+            {
+                return new APIResponse<Model>(200, "Model is updated", modelUpdated);
+            }
+            return new APIResponse<Model>(204, "Model is not updated", modelUpdated);
         }
 
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(string id)
+        public async Task<APIResponse<Model>> Delete(string id)
         {
-            return await _modelService.RemoveModelAsync(id);
+            var isDeleted = await _modelService.RemoveModelAsync(id);
+            if(isDeleted)
+            {
+                return new APIResponse<Model>(200, "Model is removed", new Model());
+            }
+            return new APIResponse<Model>(400, "Id not found", new Model());
         }
     }
 }
