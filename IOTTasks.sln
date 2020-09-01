@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IOTTasks", "IOTTasks\IOTTas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IOT.Models", "IOT.Models\IOT.Models.csproj", "{F10294DC-CD10-4B1F-BB66-6DD9291BF92B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOT.Repositories", "IOT.Repositories\IOT.Repositories.csproj", "{233741DC-5831-43AF-A312-BB72D9E8C3BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IOT.Repositories", "IOT.Repositories\IOT.Repositories.csproj", "{233741DC-5831-43AF-A312-BB72D9E8C3BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOT.Services", "IOT.Services\IOT.Services.csproj", "{B3D77E1A-A99E-4348-86DC-DA0C3FD94413}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IOT.Services", "IOT.Services\IOT.Services.csproj", "{B3D77E1A-A99E-4348-86DC-DA0C3FD94413}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOT.Utilities", "IOT.Utilities\IOT.Utilities.csproj", "{A4E1F628-4468-45F6-8A9C-D135A3A4ED96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B3D77E1A-A99E-4348-86DC-DA0C3FD94413}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3D77E1A-A99E-4348-86DC-DA0C3FD94413}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3D77E1A-A99E-4348-86DC-DA0C3FD94413}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4E1F628-4468-45F6-8A9C-D135A3A4ED96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4E1F628-4468-45F6-8A9C-D135A3A4ED96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4E1F628-4468-45F6-8A9C-D135A3A4ED96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4E1F628-4468-45F6-8A9C-D135A3A4ED96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

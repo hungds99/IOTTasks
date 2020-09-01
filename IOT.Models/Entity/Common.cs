@@ -15,10 +15,12 @@ namespace IOT.Models.Entity
         public string _id { get; set; }
 
         [BsonElement("createdAt")]
-        public DateTime createdAt { get; set; }
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime createdAt { get; set; } = DateTime.Now;
 
         [BsonElement("updatedAt")]
-        public DateTime updatedAt { get; set; }
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime updatedAt { get; set; } = DateTime.Now;
 
         [BsonElement("createdBy")]
         public string createdBy { get; set; }

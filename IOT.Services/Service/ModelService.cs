@@ -1,6 +1,7 @@
 ﻿using IOT.Models.Entity;
 using IOT.Repositories.Interface;
 using IOT.Services.Interface;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -21,7 +22,16 @@ namespace IOT.Services.Service
 
         public async Task<Model> AddModelAsync(Model model)
         {
-            return await _modelRepository.Add(model);
+            Model modelAdded;
+            try
+            {
+                modelAdded = await _modelRepository.Add(model);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return modelAdded;
         }
 
         public async Task<IEnumerable<Model>> GetAll()
@@ -31,17 +41,50 @@ namespace IOT.Services.Service
 
         public async Task<Model> GetByIdAsync(string id)
         {
-            return await _modelRepository.GetById(id);
+            Model model;
+            try
+            {
+                model = await _modelRepository.GetById(id);
+            } catch (Exception e)
+            {
+                throw e;
+            }
+            return model;
         }
 
         public async Task<bool> RemoveModelAsync(string id)
         {
-            return await _modelRepository.Remove(id);
+            bool isModelRemoved;
+            try
+            {
+                isModelRemoved = await _modelRepository.Remove(id);
+            } catch (Exception e)
+            {
+                throw e;
+            }
+            return isModelRemoved;
         }
 
         public async Task<Model> UpdateModelAsync(string id, Model model)
         {
-            return await _modelRepository.Update(id, model);
+            Model modelExisted = await GetByIdAsync(id);
+
+            Model modelUpdated;
+
+            if(modelExisted != null)
+            {
+                try
+                {
+                    modelUpdated = await _modelRepository.Update(id, model);
+                } catch (Exception e)
+                {
+                    throw e;
+                }
+            } else
+            {
+                return modelExisted;
+            }
+            return modelUpdated;
         }
     }
 }

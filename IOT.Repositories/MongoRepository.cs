@@ -57,7 +57,7 @@ namespace IOT.Repositories
         }
         private static FilterDefinition<TEntity> FilterId(string key)
         {
-            return Builders<TEntity>.Filter.Eq("Id", key);
+            return Builders<TEntity>.Filter.Eq("_id", key);
         }
     }
 }
