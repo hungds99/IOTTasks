@@ -51,6 +51,19 @@ namespace IOT.Services.Service
             return obj;
         }
 
+        public async Task<IEnumerable<Object>> GetObjectPaginationAsync(int start, int limit)
+        {
+            IEnumerable<Object> objs;
+            try
+            {
+                objs = await _objectRepository.GetPagination(start, limit);
+            } catch (System.Exception e)
+            {
+                throw e;
+            }
+            return objs;
+        }
+
         public async Task<bool> RemoveObjectAsync(string id)
         {
             bool isObjectRemoved;

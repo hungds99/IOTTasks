@@ -14,6 +14,7 @@ namespace IOT.Repositories
         Task<TEntity> Add(TEntity obj);
         Task<TEntity> GetById(string id);
         Task<IEnumerable<TEntity>> GetAll();
+        Task<IEnumerable<TEntity>> GetPagination(int start, int limit);
         Task<TEntity> Update(string id, TEntity obj);
         Task<bool> Remove(string id);
     }

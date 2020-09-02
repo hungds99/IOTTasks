@@ -15,5 +15,6 @@ namespace IOT.Services.Interface
         Task<bool> RemoveObjectAsync(string id);
         Task<Object> GetByIdAsync(string id);
         Task<IEnumerable<Object>> GetAll();
+        Task<IEnumerable<Object>> GetObjectPaginationAsync(int start, int limit);
     }
 }

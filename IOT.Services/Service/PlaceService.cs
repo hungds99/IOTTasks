@@ -53,6 +53,19 @@ namespace IOT.Services.Service
             return place;
         }
 
+        public async Task<IEnumerable<Place>> GetPlacePaginationAsync(int start, int limit)
+        {
+            IEnumerable<Place> places;
+            try
+            {
+                places = await _placeRepository.GetPagination(start, limit);
+            } catch (Exception e)
+            {
+                throw e;
+            }
+            return places;
+        }
+
         public async Task<bool> RemovePlaceAsync(string id)
         {
             bool isPlaceRemoved;

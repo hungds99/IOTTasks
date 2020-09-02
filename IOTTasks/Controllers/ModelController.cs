@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using IOT.Models.Entity;
 using IOT.Services.Interface;
@@ -27,6 +28,17 @@ namespace IOTTasks.Controllers
         {
             var models = await _modelService.GetAll();
             return new APIResponse<IEnumerable<Model>>(Ok().StatusCode, "", models);
+        }
+
+        [HttpGet("page")]
+        public async Task<APIResponse<IEnumerable<Model>>> GetPagination(int start, int limit)
+        {
+            var models = await _modelService.GetModelPaginationAsync(start, limit);
+            if(models == null)
+            {
+                return new APIResponse<IEnumerable<Model>>(Ok().StatusCode, "", models);
+            }
+            return new APIResponse<IEnumerable<Model>>(NotFound().StatusCode, "Models not found", models);
         }
 
         [HttpGet("{id}")]

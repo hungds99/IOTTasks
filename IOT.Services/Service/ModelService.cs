@@ -52,6 +52,19 @@ namespace IOT.Services.Service
             return model;
         }
 
+        public async Task<IEnumerable<Model>> GetModelPaginationAsync(int start, int limit)
+        {
+            IEnumerable<Model> models;
+            try
+            {
+                models = await _modelRepository.GetPagination(start, limit);
+            } catch (Exception e)
+            {
+                throw e;
+            }
+            return models;
+        }
+
         public async Task<bool> RemoveModelAsync(string id)
         {
             bool isModelRemoved;

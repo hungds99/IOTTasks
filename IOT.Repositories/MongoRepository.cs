@@ -39,6 +39,14 @@ namespace IOT.Repositories
             return all.ToList();
         }
 
+        public virtual async Task<IEnumerable<TEntity>> GetPagination(int start, int limit)
+        {
+            var result = await DbSet.Find(Builders<TEntity>.Filter.Empty)
+                                        .Skip((start - 1) * limit)
+                                        .Limit(limit).ToListAsync();
+            return result;
+        }
+
         public async virtual Task<TEntity> Update(string id, TEntity obj)
         {
             await DbSet.ReplaceOneAsync(FilterId(id), obj);

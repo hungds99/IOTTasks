@@ -13,6 +13,6 @@ namespace IOT.Models.Entity
         public string type { get; set; }
 
         [BsonElement("coordinates")]
-        public IList<Object> coordinates { get; set; }
+        public IList<object> coordinates { get; set; }
     }
 }
