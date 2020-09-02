@@ -19,6 +19,19 @@ namespace IOT.Services.Service
             _objectRepository = objectRepository;
         }
 
+        public async Task<IEnumerable<Object>> AddManyObjectsAsync(IEnumerable<Object> objects)
+        {
+            IEnumerable<Object> objectsAdded;
+            try
+            {
+                objectsAdded = await _objectRepository.AddMany(objects);
+            } catch (System.Exception e)
+            {
+                throw e;
+            }
+            return objectsAdded;
+        }
+
         public async Task<Object> AddObjectAsync(Object obj)
         {
             Object objectAdded;

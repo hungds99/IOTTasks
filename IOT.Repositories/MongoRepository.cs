@@ -27,6 +27,12 @@ namespace IOT.Repositories
             return obj;
         }
 
+        public virtual async Task<IEnumerable<TEntity>> AddMany(IEnumerable<TEntity> objs)
+        {
+            await DbSet.InsertManyAsync(objs);
+            return objs;
+        }
+
         public virtual async Task<TEntity> GetById(string id)
         {
             var data = await DbSet.Find(FilterId(id)).SingleOrDefaultAsync();

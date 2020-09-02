@@ -11,6 +11,7 @@ namespace IOT.Services.Interface
     public interface IPlaceService
     {
         Task<Place> AddPlaceAsync(Place place);
+        Task<IEnumerable<Place>> AddManyPlacesAsync(IEnumerable<Place> places);
         Task<Place> UpdatePlaceAsync(string id, Place place);
         Task<bool> RemovePlaceAsync(string id);
         Task<Place> GetByIdAsync(string id);

@@ -11,6 +11,7 @@ namespace IOT.Services.Interface
     public interface IObjectService
     {
         Task<Object> AddObjectAsync(Object obj);
+        Task<IEnumerable<Object>> AddManyObjectsAsync(IEnumerable<Object> objects);
         Task<Object> UpdateObjectAsync(string id, Object obj);
         Task<bool> RemoveObjectAsync(string id);
         Task<Object> GetByIdAsync(string id);

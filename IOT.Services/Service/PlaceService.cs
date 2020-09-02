@@ -20,6 +20,19 @@ namespace IOT.Services.Service
             _placeRepository = placeRepository;
         }
 
+        public async Task<IEnumerable<Place>> AddManyPlacesAsync(IEnumerable<Place> places)
+        {
+            IEnumerable<Place> placesAdded;
+            try
+            {
+                placesAdded = await _placeRepository.AddMany(places);
+            } catch (Exception e)
+            {
+                throw e;
+            }
+            return placesAdded;
+        }
+
         public async Task<Place> AddPlaceAsync(Place place)
         {
             Place placeAdded;

@@ -34,7 +34,7 @@ namespace IOTTasks.Controllers
         public async Task<APIResponse<IEnumerable<Model>>> GetPagination(int start, int limit)
         {
             var models = await _modelService.GetModelPaginationAsync(start, limit);
-            if(models == null)
+            if(models != null)
             {
                 return new APIResponse<IEnumerable<Model>>(Ok().StatusCode, "", models);
             }
@@ -61,6 +61,17 @@ namespace IOTTasks.Controllers
                 return new APIResponse<Model>(201, "Model is created", modelAdded);
             }
             return new APIResponse<Model>(204, "Model is not created", modelAdded);
+        }
+
+        [HttpPost("add")]
+        public async Task<APIResponse<IEnumerable<Model>>> PostMany([FromBody] IEnumerable<Model> models)
+        {
+            var modelsAdded = await _modelService.AddManyModelsAsync(models);
+            if(modelsAdded != null)
+            {
+                return new APIResponse<IEnumerable<Model>>(201, "All Models are created", modelsAdded);
+            }
+            return new APIResponse<IEnumerable<Model>>(204, "All Models are not created", modelsAdded);
         }
 
         [HttpPut("{id}")]

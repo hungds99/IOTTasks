@@ -12,6 +12,7 @@ namespace IOT.Services.Interface
     public interface IModelService
     {
         Task<Model> AddModelAsync(Model model);
+        Task<IEnumerable<Model>> AddManyModelsAsync(IEnumerable<Model> models);
         Task<Model> UpdateModelAsync(string id, Model model);
         Task<bool> RemoveModelAsync(string id);
         Task<Model> GetByIdAsync(string id);

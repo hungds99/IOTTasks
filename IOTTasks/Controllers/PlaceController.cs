@@ -34,7 +34,7 @@ namespace IOTTasks.Controllers
         public async Task<APIResponse<IEnumerable<Place>>> GetPagination(int start, int limit)
         {
             var places = await _placeService.GetPlacePaginationAsync(start, limit);
-            if(places == null)
+            if(places != null)
             {
                 return new APIResponse<IEnumerable<Place>>(Ok().StatusCode, "", places);
             }
@@ -61,6 +61,17 @@ namespace IOTTasks.Controllers
                 return new APIResponse<Place>(201, "Place is created", placeAdded);
             }
             return new APIResponse<Place>(204, "Place is not created", placeAdded);
+        }
+
+        [HttpPost("add")]
+        public async Task<APIResponse<IEnumerable<Place>>> PostMany([FromBody] IEnumerable<Place> places)
+        {
+            var placessAdded = await _placeService.AddManyPlacesAsync(places);
+            if (placessAdded != null)
+            {
+                return new APIResponse<IEnumerable<Place>>(201, "All Places are created", placessAdded);
+            }
+            return new APIResponse<IEnumerable<Place>>(204, "All Places are not created", placessAdded);
         }
 
         [HttpPut("{id}")]

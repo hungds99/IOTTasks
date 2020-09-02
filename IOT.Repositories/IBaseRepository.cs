@@ -12,6 +12,7 @@ namespace IOT.Repositories
     public interface IBaseRepository<TEntity> : IDisposable where TEntity : class
     {
         Task<TEntity> Add(TEntity obj);
+        Task<IEnumerable<TEntity>> AddMany(IEnumerable<TEntity> objs);
         Task<TEntity> GetById(string id);
         Task<IEnumerable<TEntity>> GetAll();
         Task<IEnumerable<TEntity>> GetPagination(int start, int limit);
