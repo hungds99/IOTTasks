@@ -9,6 +9,7 @@ namespace IOT.Models.Entity
     /// <author>@HungDinh</author>
     public class Model : Common
     {
+        [BsonRequired]
         [BsonElement("name")]
         public string name { get; set; }
 
