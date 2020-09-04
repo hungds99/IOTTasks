@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   iottasks:
-    image: ${DOCKER_REGISTRY-}iottasks
+    # image: ${DOCKER_REGISTRY-}iottasks
     build:
       context: .
       dockerfile: IOTTasks/Dockerfile
