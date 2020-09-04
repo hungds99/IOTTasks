@@ -8,8 +8,8 @@ services:
       #dockerfile: IOTTasks/Dockerfile
     ports: 
       - "8000:80"
-    #volumes:
-      #- .:/src
+    volumes:
+      - ".:/src"
     depends_on:
        - mongodb
 
