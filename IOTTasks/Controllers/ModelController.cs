@@ -54,6 +54,10 @@ namespace IOTTasks.Controllers
         [HttpPost]
         public async Task<APIResponse<Model>> Post([FromBody] Model model)
         {
+            if(!ModelState.IsValid)
+            {
+                return new APIResponse<Model>(400, ModelState.ToString(), model);
+            }
             var modelAdded = await _modelService.AddModelAsync(model);
             if(modelAdded != null)
             {
@@ -76,6 +80,7 @@ namespace IOTTasks.Controllers
         [HttpPut("{id}")]
         public async Task<APIResponse<Model>> Put(string id, [FromBody] Model model)
         {
+            model._id = id;
             var modelUpdated = await _modelService.UpdateModelAsync(id, model);
             if(modelUpdated != null)
             {

@@ -76,6 +76,7 @@ namespace IOTTasks.Controllers
         [HttpPut("{id}")]
         public async Task<APIResponse<Object>> Put(string id, [FromBody] Object obj)
         {
+            obj._id = id;
             var objectUpdated = await _objectService.UpdateObjectAsync(id, obj);
             if (objectUpdated != null)
             {

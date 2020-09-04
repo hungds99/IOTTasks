@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  iottasks:
+    image: ${DOCKER_REGISTRY-}iottasks
+    build:
+      context: .
+      dockerfile: IOTTasks/Dockerfile
+    ports: 
+      - "5000:5000"
+    volumes:
+      - ./:/src
+    depends_on:
+       - db
+
+
+  db: 
+    image: mongo
+    container_name: my_mongo_db
+    restart: always
+    volumes: 
+      #- ${WEBAPP_STORAGE_HOME}/site:/data/db
+      - './data:/data/db'
+    ports:
+      - "27017:27017"

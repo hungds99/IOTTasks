@@ -76,6 +76,7 @@ namespace IOTTasks.Controllers
         [HttpPut("{id}")]
         public async Task<APIResponse<Place>> Put(string id, [FromBody] Place place)
         {
+            place._id = id;
             var placeUpdated = await _placeService.UpdatePlaceAsync(id, place);
             if (placeUpdated != null)
             {

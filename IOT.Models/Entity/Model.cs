@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace IOT.Models.Entity
 {
@@ -9,7 +10,7 @@ namespace IOT.Models.Entity
     /// <author>@HungDinh</author>
     public class Model : Common
     {
-        [BsonRequired]
+        [Required(ErrorMessage ="Model name is required")]
         [BsonElement("name")]
         public string name { get; set; }
 
