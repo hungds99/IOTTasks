@@ -1,23 +1,33 @@
 version: '3.4'
 
 services:
-  mongodb: 
+  mongo: 
     image: mongo
-    container_name: my_mongo_db
+    container_name: mongo
     restart: always
     volumes: 
       - './bin/data:/data/db'
     ports:
       - "27017:27017"
 
-  web_app:
-    image: hunter99/iottasks:v1
+  mongo-express:
+    image: mongo-express
+    ports:
+      - "8088:8081"
+    depends_on:
+      - mongo
+
+  iottasks:
+    image: ${DOCKER_REGISTRY-}iottasks
+    build:
+      context: .
+      dockerfile: IOTTasks/Dockerfile
     ports: 
       - "8000:80"
     volumes:
-      - "./:/src"
+      - ".:/src"
     depends_on:
-       - mongodb
+       - mongo
     links:
-       - mongodb
+       - mongo
 

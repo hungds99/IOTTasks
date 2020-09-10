@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Windows</DockerTargetOS>
-    <ProjectGuid>2bf61676-ff00-4ec2-913c-bb7390e776b8</ProjectGuid>
+    <ProjectGuid>0bd5f1f2-e895-478f-a048-64e7dd599773</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://{ServiceIPAddress}{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>iottasks</DockerServiceName>
