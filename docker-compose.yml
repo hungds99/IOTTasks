@@ -20,10 +20,11 @@ services:
       - mongo
 
   iottasks:
-    image: ${DOCKER_REGISTRY-}iottasks
-    build:
-      context: .
-      dockerfile: IOTTasks/Dockerfile
+    image: hunter99/iottasks:v3
+    #image: ${DOCKER_REGISTRY-}iottasks
+    #build:
+     # context: .
+      #dockerfile: IOTTasks/Dockerfile
     ports: 
       - "8000:80"
     volumes:
