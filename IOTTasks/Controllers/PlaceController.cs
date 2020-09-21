@@ -11,7 +11,7 @@ namespace IOTTasks.Controllers
     /// ObjectController
     /// </summary>
     /// <author>@HungDinh</author>
-    [Route("api/[controller]")]
+    [Route("api/places")]
     [ApiController]
     public class PlaceController : ControllerBase
     {
