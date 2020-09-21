@@ -19,7 +19,7 @@ namespace IOT.Utilities.Response
         /// Message of code content
         /// </summary>
         [JsonProperty("message", NullValueHandling = NullValueHandling.Ignore)]
-        public string Message { get; set; }
+        public dynamic Message { get; set; }
 
         /// <summary>
         /// Data is result of action, if has error then data null
@@ -27,7 +27,7 @@ namespace IOT.Utilities.Response
         [JsonProperty("result")]
         public T Result { get; set; }
 
-        public APIResponse(int code, string message, T result)
+        public APIResponse(int code, dynamic message, T result)
         {
             Code = code;
             Message = message;

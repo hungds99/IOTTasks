@@ -12,9 +12,12 @@
     <ProjectReference Include="..\IOT.Repositories\IOT.Repositories.csproj" />
     <ProjectReference Include="..\IOT.Services\IOT.Services.csproj" />
     <ProjectReference Include="..\IOT.Utilities\IOT.Utilities.csproj" />
+    <ProjectReference Include="..\IOT.ViewModels\IOT.ViewModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.7" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
   </ItemGroup>

@@ -38,6 +38,7 @@ namespace IOT.Services.Service
             Model modelAdded;
             try
             {
+                model.setCreatedAt(DateTime.UtcNow);
                 modelAdded = await _modelRepository.Add(model);
             }
             catch (Exception e)
@@ -101,6 +102,7 @@ namespace IOT.Services.Service
             {
                 try
                 {
+                    model.setUpdatedAt(DateTime.UtcNow);
                     modelUpdated = await _modelRepository.Update(id, model);
                 } catch (Exception e)
                 {

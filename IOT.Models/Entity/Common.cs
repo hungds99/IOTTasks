@@ -15,12 +15,12 @@ namespace IOT.Models.Entity
         public string _id { get; set; }
 
         [BsonElement("createdAt")]
-        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-        public DateTime createdAt { get; set; } = DateTime.Now;
+        [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
+        public DateTime createdAt { get; set; }
 
         [BsonElement("updatedAt")]
-        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-        public DateTime updatedAt { get; set; } = DateTime.Now;
+        [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
+        public DateTime updatedAt { get; set; }
 
         [BsonElement("createdBy")]
         public string createdBy { get; set; }
@@ -30,5 +30,15 @@ namespace IOT.Models.Entity
 
         [BsonElement("isDeleted")]
         public bool isDeleted { get; set; }
+
+        public void setCreatedAt(DateTime createdAt)
+        {
+            this.createdAt = createdAt;
+        }
+
+        public void setUpdatedAt(DateTime updatedAt)
+        {
+            this.updatedAt = updatedAt;
+        }
     }
 }

@@ -1,15 +1,19 @@
+using AutoMapper;
 using IOT.Models.DBSettings;
 using IOT.Models.Model;
 using IOT.Repositories.Interface;
 using IOT.Repositories.Repository;
 using IOT.Services.Interface;
 using IOT.Services.Service;
+using IOT.ViewModels.AutoMapper;
+using IOTTasks.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using System.Web.Http;
 
 namespace IOTTasks
 {
@@ -25,12 +29,25 @@ namespace IOTTasks
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            // services.AddAutoMapper(typeof(Startup));
+
+            // Auto Mapper Configurations
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutoMapping());
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            services.AddControllers().ConfigureApiBehaviorOptions(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            }); ;
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();
 
-            // requires using Microsoft.Extensions.Options
+            // Requires using Microsoft.Extensions.Options
             services.Configure<MongoDbSettings>(
                 Configuration.GetSection(nameof(MongoDbSettings)));
 
@@ -79,6 +96,10 @@ namespace IOTTasks
             {
                 endpoints.MapControllers();
             });
+        }
+        public static void Register(HttpConfiguration config)
+        {
+            config.Filters.Add(new ValidationActionFilter());
         }
     }
 }
