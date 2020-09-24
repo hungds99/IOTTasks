@@ -10,6 +10,7 @@ COPY ["IOT.Repositories/IOT.Repositories.csproj", "IOT.Repositories/"]
 COPY ["IOT.Models/IOT.Models.csproj", "IOT.Models/"]
 COPY ["IOT.Utilities/IOT.Utilities.csproj", "IOT.Utilities/"]
 COPY ["IOT.Services/IOT.Services.csproj", "IOT.Services/"]
+COPY ["IOT.ViewModels/IOT.ViewModels.csproj", "IOT.ViewModels/"]
 RUN dotnet restore "IOTTasks/IOTTasks.csproj"
 COPY . .
 WORKDIR "/src/IOTTasks"

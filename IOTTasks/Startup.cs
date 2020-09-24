@@ -31,6 +31,8 @@ namespace IOTTasks
         {
             // services.AddAutoMapper(typeof(Startup));
 
+            services.AddCors();
+
             // Auto Mapper Configurations
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -75,6 +77,12 @@ namespace IOTTasks
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(corsPolicyBuilder =>
+               corsPolicyBuilder.WithOrigins("http://localhost:3000")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+            );
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
