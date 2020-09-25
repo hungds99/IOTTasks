@@ -34,7 +34,7 @@ namespace IOTTasks.Controllers
         public async Task<APIResponse<IEnumerable<Model>>> Get()
         {
             var models = await _modelService.GetAll();
-            return new APIResponse<IEnumerable<Model>>(Ok().StatusCode, "Success", models);
+            return new APIResponse<IEnumerable<Model>>(200, "Success", models);
         }
 
         /// <summary>
@@ -62,6 +62,7 @@ namespace IOTTasks.Controllers
         [HttpGet("{id}")]
         public async Task<APIResponse<Model>> Get(string id)
         {
+
             var model = await _modelService.GetByIdAsync(id);
             if(model != null)
             {
